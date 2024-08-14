@@ -1,7 +1,6 @@
 package com.example.rxjavapractice.examples.example3;
 
 import androidx.annotation.NonNull;
-
 import com.example.rxjavapractice.base.UiState;
 import com.example.rxjavapractice.utils.Constants;
 import android.os.Bundle;
