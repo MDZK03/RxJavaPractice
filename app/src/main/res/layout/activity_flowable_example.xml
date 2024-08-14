@@ -5,10 +5,10 @@
     android:orientation="vertical"
     >
 
-    <include layout="@layout/activity_base"/>
+    <include layout="@layout/activity_toolbar"/>
 
     <Button
-        android:id="@+id/btnExample"
+        android:id="@+id/btnFlowExample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/do_some_work"
@@ -22,7 +22,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvExample"
+            android:id="@+id/tvFlowExample"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black" />

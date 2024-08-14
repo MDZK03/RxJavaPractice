@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxjavapractice.R
 import com.example.rxjavapractice.databinding.ActivityExampleBinding
 
-class ExampleActivity : BaseActivity() {
+class ExampleActivity : ToolbarActivity() {
     private val exampleCategory by lazy {
         intent.getParcelableExtra<ExampleCategory>(
             EXTRA_EXAMPLE_CATEGORY
@@ -56,18 +56,6 @@ class ExampleActivity : BaseActivity() {
     }
 
     override fun getToolbarTitle() = exampleCategory.categoryName
-    override fun onLoad() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSuccess(uiState: UiState.Success) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onError(uiState: UiState.Error) {
-        TODO("Not yet implemented")
-    }
-
     companion object {
 
         private const val EXTRA_EXAMPLE_CATEGORY = "EXTRA_EXAMPLE_CATEGORIES"

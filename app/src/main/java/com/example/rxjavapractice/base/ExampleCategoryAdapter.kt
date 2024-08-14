@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rxjavapractice.R
 
-class ExampleCategoryAdapter(
+class ExampleCategoryAdapter (
     private val exampleCategories: List<ExampleCategory>,
     private val onExampleCategoryClick: (ExampleCategory) -> Unit
 ) : RecyclerView.Adapter<ExampleCategoryAdapter.ViewHolder>() {

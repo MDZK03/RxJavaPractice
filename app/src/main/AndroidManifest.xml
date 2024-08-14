@@ -12,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RxJavaPractice"
         tools:targetApi="31">
+        <activity android:name=".base.BaseActivity"/>
         <activity
             android:name=".examples.example3.BookActivity"
-            android:exported="true" />
+            android:exported="false" />
+        <activity
+            android:name=".examples.example2.ColorActivity"
+            android:exported="false" />
         <activity
             android:name=".SimpleStringAdapter"
             android:exported="true" />
@@ -28,14 +32,11 @@
             android:name=".examples.example5.FlowableExampleActivity"
             android:exported="true" />
         <activity
-            android:name=".examples.example2.ColorActivity"
-            android:exported="true" />
-        <activity
             android:name=".examples.example1.RxJavaSimpleActivity"
             android:exported="true" />
         <activity android:name=".base.ExampleAdapter" />
         <activity
-            android:name=".base.BaseActivity"
+            android:name=".base.ToolbarActivity"
             android:exported="true" />
         <activity android:name=".base.ExampleCategoryAdapter" />
         <activity

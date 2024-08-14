@@ -1,32 +1,22 @@
 package com.example.rxjavapractice.base
 
-import androidx.appcompat.app.AppCompatActivity
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import com.example.rxjavapractice.R
+import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<B: ViewBinding, V: BaseViewModel<UiState>>(
+    private val bindingFactory: (LayoutInflater) -> B,
+    private val vmClass: Class<V>
+) : ToolbarActivity() {
+    lateinit var binding: B
+    lateinit var viewModel: V
 
-    abstract fun getToolbarTitle(): String
-
-    override fun onStart() {
-        super.onStart()
-        setToolbarTitle(getToolbarTitle())
-        getBackButton().setOnClickListener {
-            finish()
-        }
-    }
-
-    private fun getBackButton(): ImageView = findViewById(R.id.btnBack)
-    private fun getToolBar(): TextView = findViewById(R.id.tvToolbarTitle)
-
-    fun hideBackButton() {
-        getBackButton().visibility = View.GONE
-    }
-
-    private fun setToolbarTitle(toolbarTitle: String) {
-        getToolBar().text = toolbarTitle
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = bindingFactory(layoutInflater)
+        setContentView(binding.root)
+        viewModel = ViewModelProvider(this)[vmClass]
     }
 
     fun render(uiState: UiState) {

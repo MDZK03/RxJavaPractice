@@ -3,8 +3,8 @@ package com.example.rxjavapractice.base
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rxjavapractice.examples.example1.RxJavaSimpleActivity
-import com.example.rxjavapractice.examples.example3.BookActivity
 import com.example.rxjavapractice.examples.example2.ColorActivity
+import com.example.rxjavapractice.examples.example3.BookActivity
 import com.example.rxjavapractice.examples.example4.CallableExampleActivity
 import com.example.rxjavapractice.examples.example5.FlowableExampleActivity
 import kotlinx.parcelize.Parcelize

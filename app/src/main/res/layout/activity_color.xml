@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <include layout="@layout/activity_base"/>
+    <include layout="@layout/activity_toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/color_list"
+        android:id="@+id/rvColorList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

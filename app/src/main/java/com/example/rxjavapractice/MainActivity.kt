@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rxjavapractice.base.BaseActivity
+import com.example.rxjavapractice.base.ToolbarActivity
 import com.example.rxjavapractice.base.ExampleActivity
 import com.example.rxjavapractice.base.ExampleCategory
 import com.example.rxjavapractice.base.ExampleCategoryAdapter
@@ -12,7 +12,7 @@ import com.example.rxjavapractice.base.UiState
 import com.example.rxjavapractice.base.exampleCategories
 import com.example.rxjavapractice.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity() {
+class MainActivity : ToolbarActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -57,15 +57,4 @@ class MainActivity : BaseActivity() {
     }
 
     override fun getToolbarTitle() = "RxJava examples"
-    override fun onLoad() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSuccess(uiState: UiState.Success) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onError(uiState: UiState.Error) {
-        TODO("Not yet implemented")
-    }
 }
