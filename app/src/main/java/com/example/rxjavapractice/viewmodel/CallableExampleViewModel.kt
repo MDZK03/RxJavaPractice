@@ -1,4 +1,4 @@
-package com.example.rxjavapractice.examples.example4
+package com.example.rxjavapractice.viewmodel
 
 import android.os.SystemClock
 import com.example.rxjavapractice.base.BaseViewModel

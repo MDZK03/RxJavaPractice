@@ -2,13 +2,16 @@ package com.example.rxjavapractice.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseActivity<B: ViewBinding, V: BaseViewModel<UiState>>(
     private val bindingFactory: (LayoutInflater) -> B,
     private val vmClass: Class<V>
-) : ToolbarActivity() {
+) : AppCompatActivity() {
     lateinit var binding: B
     lateinit var viewModel: V
 
@@ -35,4 +38,12 @@ abstract class BaseActivity<B: ViewBinding, V: BaseViewModel<UiState>>(
     abstract fun onLoad()
     abstract fun onSuccess(uiState: UiState.Success)
     abstract fun onError(uiState: UiState.Error)
+
+    fun showFragment(viewId: Int,fragmentName : Fragment) {
+        return supportFragmentManager.commit {
+            replace(viewId, fragmentName)
+            setReorderingAllowed(true)
+            addToBackStack("replace")
+        }
+    }
 }

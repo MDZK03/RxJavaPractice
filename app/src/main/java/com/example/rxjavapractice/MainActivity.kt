@@ -4,11 +4,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rxjavapractice.base.ToolbarActivity
-import com.example.rxjavapractice.base.ExampleActivity
 import com.example.rxjavapractice.base.ExampleCategory
-import com.example.rxjavapractice.base.ExampleCategoryAdapter
-import com.example.rxjavapractice.base.UiState
 import com.example.rxjavapractice.base.exampleCategories
 import com.example.rxjavapractice.databinding.ActivityMainBinding
 

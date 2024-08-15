@@ -1,4 +1,4 @@
-package com.example.rxjavapractice.examples.example5
+package com.example.rxjavapractice.viewmodel
 
 import com.example.rxjavapractice.base.BaseViewModel
 import com.example.rxjavapractice.base.UiState
