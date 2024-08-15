@@ -6,7 +6,7 @@
     android:orientation="vertical"
     >
 
-    <include layout="@layout/activity_base"/>
+    <include layout="@layout/fragment_base"/>
 
     <Button
         android:id="@+id/btnServer"
@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/server"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         />
 
     <TextView
