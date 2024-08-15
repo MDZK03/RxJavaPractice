@@ -13,4 +13,5 @@
     <string name="schedulerActivity">SchedulerActivity</string>
     <string name="do_some_work">Do Some Work</string>
     <string name="flowableExample">FlowableExample</string>
+    <string name="hello_blank_fragment">Hello Fragment</string>
 </resources>

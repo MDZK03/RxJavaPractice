@@ -12,34 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RxJavaPractice"
         tools:targetApi="31">
+        <activity android:name=".base.BaseActivity"/>
         <activity
-            android:name=".examples.example3.BookActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SimpleStringAdapter"
-            android:exported="true" />
-        <activity
-            android:name=".base.ExampleActivity"
-            android:exported="true" />
-        <activity
-            android:name=".examples.example4.CallableExampleActivity"
-            android:exported="true" />
-        <activity
-            android:name=".examples.example5.FlowableExampleActivity"
-            android:exported="true" />
-        <activity
-            android:name=".examples.example2.ColorActivity"
-            android:exported="true" />
-        <activity
-            android:name=".examples.example1.RxJavaSimpleActivity"
-            android:exported="true" />
-        <activity android:name=".base.ExampleAdapter" />
-        <activity
-            android:name=".base.BaseActivity"
-            android:exported="true" />
-        <activity android:name=".base.ExampleCategoryAdapter" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
