@@ -10,7 +10,7 @@ import com.example.rxjavapractice.base.example5Description
 import com.example.rxjavapractice.databinding.FragmentFlowableExampleBinding
 import com.example.rxjavapractice.viewmodel.FlowableExampleViewModel
 
-class FlowableExampleFragment : BaseFragment<FragmentFlowableExampleBinding>(
+class FlowableExampleFragment : BaseFragment<FragmentFlowableExampleBinding> (
     FragmentFlowableExampleBinding::inflate
 ) {
     override fun getToolbarTitle(): String = example5Description

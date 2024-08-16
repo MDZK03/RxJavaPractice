@@ -2,29 +2,25 @@ package com.example.rxjavapractice.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rxjavapractice.R
+import com.example.rxjavapractice.databinding.ExampleItemBinding
 
 class ExampleAdapter (
     private val exampleList: List<Example>,
     private val onExampleClick: (Example) -> Unit
-
 ): RecyclerView.Adapter<ExampleAdapter.ViewHolder>() {
-
-    class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
+    class ViewHolder(val binding: ExampleItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val textView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.example_item, parent, false) as TextView
-        return ViewHolder(textView)
+        val binding = ExampleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount() = exampleList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = exampleList[position].description
-        holder.textView.setOnClickListener {
+        holder.binding.textView.text = exampleList[position].description
+        holder.binding.textView.setOnClickListener {
             onExampleClick(exampleList[position])
         }
     }
