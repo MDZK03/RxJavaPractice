@@ -1,34 +1,36 @@
 package com.example.rxjavapractice.view.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.rxjavapractice.R
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.rxjavapractice.base.BaseFragment
+import com.example.rxjavapractice.base.UiState
 import com.example.rxjavapractice.base.example5Description
 import com.example.rxjavapractice.databinding.FragmentFlowableExampleBinding
 import com.example.rxjavapractice.viewmodel.FlowableExampleViewModel
 
-class FlowableExampleFragment : BaseFragment<FragmentFlowableExampleBinding, FlowableExampleViewModel>(
-    FragmentFlowableExampleBinding::inflate, FlowableExampleViewModel::class.java
+class FlowableExampleFragment : BaseFragment<FragmentFlowableExampleBinding>(
+    FragmentFlowableExampleBinding::inflate
 ) {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_flowable_example, container, false)
-    }
-
     override fun getToolbarTitle(): String = example5Description
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val viewModel = ViewModelProvider(requireActivity())[FlowableExampleViewModel::class.java]
+        viewModel.uiState().observe(requireActivity()) { uiState -> if(uiState != null) render(uiState) }
+        binding.btnFlowExample.setOnClickListener { viewModel.doSomeWork() }
+    }
+    override fun onLoad() = with(binding) {
+        btnFlowExample.isEnabled = false
+    }
 
-    companion object {
+    override fun onSuccess(uiState: UiState.Success) = with(binding) {
+        btnFlowExample.isEnabled = true
+        tvFlowExample.append("onSuccess: value = " + uiState.successMessage)
+    }
+
+    override fun onError(uiState: UiState.Error) = with(binding) {
+        Toast.makeText(requireActivity(), uiState.errorMessage, Toast.LENGTH_SHORT).show()
+        btnFlowExample.isEnabled = true
     }
 }

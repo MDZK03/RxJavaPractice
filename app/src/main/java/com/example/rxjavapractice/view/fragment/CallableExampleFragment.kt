@@ -1,32 +1,46 @@
 package com.example.rxjavapractice.view.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.rxjavapractice.R
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.rxjavapractice.base.BaseFragment
+import com.example.rxjavapractice.base.UiState
 import com.example.rxjavapractice.base.example4Description
 import com.example.rxjavapractice.databinding.FragmentCallableExampleBinding
 import com.example.rxjavapractice.viewmodel.CallableExampleViewModel
 
-class CallableExampleFragment : BaseFragment<FragmentCallableExampleBinding, CallableExampleViewModel>(
-    FragmentCallableExampleBinding::inflate, CallableExampleViewModel::class.java
+class CallableExampleFragment : BaseFragment<FragmentCallableExampleBinding>(
+    FragmentCallableExampleBinding::inflate
 ) {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_callable_example, container, false)
-    }
     override fun getToolbarTitle(): String = example4Description
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val viewModel = ViewModelProvider(requireActivity())[CallableExampleViewModel::class.java]
+        viewModel.uiState().observe(requireActivity()) { uiState -> if(uiState != null) render(uiState) }
+        binding.btnLongOperation.setOnClickListener { viewModel.runCallableExample() }
+
+    }
+    override fun onLoad() = with(binding) {
+        progressBarClb.visibility = View.VISIBLE
+        btnLongOperation.isEnabled = false
+        tvMessageArea.append("\n" +"Progressbar visible" + "\n")
+    }
+
+    override fun onSuccess(uiState: UiState.Success) = with(binding) {
+        Toast.makeText(requireActivity(), "Please wait a few seconds", Toast.LENGTH_SHORT).show()
+        progressBarClb.visibility = View.GONE
+        btnLongOperation.isEnabled = true
+        tvMessageArea.append("\n" + "onNext: " + uiState.successMessage + "\n")
+        tvMessageArea.append("\n" + "onComplete: ")
+        tvMessageArea.append("Hiding Progressbar" + "\n")
+    }
+
+    override fun onError(uiState: UiState.Error) = with(binding) {
+        Toast.makeText(requireActivity(), uiState.errorMessage, Toast.LENGTH_SHORT).show()
+        progressBarClb.visibility = View.GONE
+        btnLongOperation.isEnabled = true
+        tvMessageArea.append("\n" + "OnError: ")
+        tvMessageArea.append("Hiding Progressbar" + "\n")
     }
 }

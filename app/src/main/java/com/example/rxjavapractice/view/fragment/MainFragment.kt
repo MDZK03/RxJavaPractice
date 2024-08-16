@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rxjavapractice.R
 import com.example.rxjavapractice.base.BaseFragment
 import com.example.rxjavapractice.base.Example
 import com.example.rxjavapractice.base.ExampleAdapter
+import com.example.rxjavapractice.base.UiState
 import com.example.rxjavapractice.base.exampleList
 import com.example.rxjavapractice.databinding.FragmentMainBinding
-import com.example.rxjavapractice.viewmodel.MainFragmentViewModel
 
-class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
+class MainFragment : BaseFragment<FragmentMainBinding>(
     FragmentMainBinding::inflate,
-    MainFragmentViewModel::class.java
 ) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,12 +26,25 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
     }
 
     private val onExampleClickListener: (Example) -> Unit = { clickedExample ->
-        childFragmentManager.commit {
-            setReorderingAllowed(true)
-            replace(binding.mainFragment.id,clickedExample.targetFragment)
-            binding.mainFragment.visibility = View.GONE
-        }
+        requireActivity().supportFragmentManager
+            .commit {
+                setReorderingAllowed(true)
+                replace(R.id.fragment_container_main,clickedExample.targetFragment)
+                addToBackStack("replace")
+                remove(MainFragment())
+            }
     }
 
     override fun getToolbarTitle(): String = "RxJavaExamples"
+    override fun onLoad() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSuccess(uiState: UiState.Success) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onError(uiState: UiState.Error) {
+        TODO("Not yet implemented")
+    }
 }

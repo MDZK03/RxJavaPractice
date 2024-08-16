@@ -7,20 +7,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.example.rxjavapractice.R
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-abstract class BaseFragment<B: ViewBinding, V: BaseViewModel<UiState>> (
+abstract class BaseFragment<B: ViewBinding> (
     private val inflate: Inflate<B>,
-    private val vmClass: Class<V>
 ) : Fragment() {
 
     private var _binding: B? = null
     protected val binding: B get() = _binding!!
-    protected lateinit var viewModel: V
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +25,6 @@ abstract class BaseFragment<B: ViewBinding, V: BaseViewModel<UiState>> (
         savedInstanceState: Bundle?
     ): View? {
         _binding = inflate.invoke(inflater, container, false)
-        viewModel = ViewModelProvider(this)[vmClass]
         return binding.root
     }
 
@@ -55,4 +51,22 @@ abstract class BaseFragment<B: ViewBinding, V: BaseViewModel<UiState>> (
     private fun setToolbarTitle(toolbarTitle: String) {
         getToolBar().text = toolbarTitle
     }
+
+    fun render(uiState: UiState) {
+        when (uiState) {
+            is UiState.Loading -> {
+                onLoad()
+            }
+            is UiState.Success -> {
+                onSuccess(uiState)
+            }
+            is UiState.Error -> {
+                onError(uiState)
+            }
+        }
+    }
+    abstract fun onLoad()
+    abstract fun onSuccess(uiState: UiState.Success)
+    abstract fun onError(uiState: UiState.Error)
+
 }

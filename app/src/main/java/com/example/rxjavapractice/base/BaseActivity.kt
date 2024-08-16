@@ -3,6 +3,7 @@ package com.example.rxjavapractice.base
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 

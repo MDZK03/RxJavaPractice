@@ -9,6 +9,7 @@ import com.example.rxjavapractice.R
 class ExampleAdapter (
     private val exampleList: List<Example>,
     private val onExampleClick: (Example) -> Unit
+
 ): RecyclerView.Adapter<ExampleAdapter.ViewHolder>() {
 
     class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)

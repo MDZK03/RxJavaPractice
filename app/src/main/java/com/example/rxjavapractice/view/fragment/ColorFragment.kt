@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.rxjavapractice.R
 import com.example.rxjavapractice.base.BaseFragment
+import com.example.rxjavapractice.base.UiState
 import com.example.rxjavapractice.base.example2Description
 import com.example.rxjavapractice.databinding.FragmentColorBinding
-import com.example.rxjavapractice.viewmodel.ColorViewModel
 
-class ColorFragment : BaseFragment<FragmentColorBinding, ColorViewModel>(
-    FragmentColorBinding::inflate, ColorViewModel::class.java
+class ColorFragment : BaseFragment<FragmentColorBinding>(
+    FragmentColorBinding::inflate
 ) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +27,17 @@ class ColorFragment : BaseFragment<FragmentColorBinding, ColorViewModel>(
     }
 
     override fun getToolbarTitle(): String = example2Description
+    override fun onLoad() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSuccess(uiState: UiState.Success) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onError(uiState: UiState.Error) {
+        TODO("Not yet implemented")
+    }
 
     companion object {
     }

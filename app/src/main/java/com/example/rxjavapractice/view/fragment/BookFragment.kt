@@ -1,18 +1,17 @@
 package com.example.rxjavapractice.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.rxjavapractice.R
 import com.example.rxjavapractice.base.BaseFragment
+import com.example.rxjavapractice.base.UiState
 import com.example.rxjavapractice.base.example3Description
 import com.example.rxjavapractice.databinding.FragmentBookBinding
-import com.example.rxjavapractice.viewmodel.BookViewModel
 
-class BookFragment : BaseFragment<FragmentBookBinding, BookViewModel>(
-    FragmentBookBinding::inflate, BookViewModel::class.java
+class BookFragment : BaseFragment<FragmentBookBinding>(
+    FragmentBookBinding::inflate
 ){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,4 +27,15 @@ class BookFragment : BaseFragment<FragmentBookBinding, BookViewModel>(
     }
 
     override fun getToolbarTitle(): String = example3Description
+    override fun onLoad() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSuccess(uiState: UiState.Success) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onError(uiState: UiState.Error) {
+        TODO("Not yet implemented")
+    }
 }
