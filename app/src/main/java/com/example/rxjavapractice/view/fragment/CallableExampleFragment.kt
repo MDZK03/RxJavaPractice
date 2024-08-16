@@ -6,8 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.rxjavapractice.R
+import com.example.rxjavapractice.base.BaseFragment
+import com.example.rxjavapractice.base.example4Description
+import com.example.rxjavapractice.databinding.FragmentCallableExampleBinding
+import com.example.rxjavapractice.viewmodel.CallableExampleViewModel
 
-class CallableExampleFragment : Fragment() {
+class CallableExampleFragment : BaseFragment<FragmentCallableExampleBinding, CallableExampleViewModel>(
+    FragmentCallableExampleBinding::inflate, CallableExampleViewModel::class.java
+) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,7 +26,7 @@ class CallableExampleFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_callable_example, container, false)
     }
-
+    override fun getToolbarTitle(): String = example4Description
     companion object {
     }
 }

@@ -6,8 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.rxjavapractice.R
+import com.example.rxjavapractice.base.BaseFragment
+import com.example.rxjavapractice.base.example3Description
+import com.example.rxjavapractice.databinding.FragmentBookBinding
+import com.example.rxjavapractice.viewmodel.BookViewModel
 
-class BookFragment : Fragment() {
+class BookFragment : BaseFragment<FragmentBookBinding, BookViewModel>(
+    FragmentBookBinding::inflate, BookViewModel::class.java
+){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,6 +27,5 @@ class BookFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_book, container, false)
     }
 
-    companion object {
-    }
+    override fun getToolbarTitle(): String = example3Description
 }

@@ -7,44 +7,34 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import java.lang.reflect.ParameterizedType
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import androidx.fragment.app.createViewModelLazy
 import com.example.rxjavapractice.R
 
-@Suppress("UNCHECKED_CAST")
-abstract class BaseFragment<B: ViewBinding, VM: ViewModel> (
-    private val bindingFactory: (LayoutInflater) -> B,
-    private val vmClass: Class<VM>
+typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
+
+abstract class BaseFragment<B: ViewBinding, V: BaseViewModel<UiState>> (
+    private val inflate: Inflate<B>,
+    private val vmClass: Class<V>
 ) : Fragment() {
 
-    protected var binding: B? = null
-    protected lateinit var viewModel: VM
-
-    private val type = (javaClass.genericSuperclass as ParameterizedType)
-    private val classVB = type.actualTypeArguments[0] as Class<B>
-
-    private val inflateMethod = classVB.getMethod(
-        "inflate",
-        bindingFactory::class.java,
-        ViewGroup::class.java,
-        Boolean::class.java
-    )
+    private var _binding: B? = null
+    protected val binding: B get() = _binding!!
+    protected lateinit var viewModel: V
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = inflateMethod.invoke(null, inflater, container, false) as B
-        viewModel = createViewModelLazy(vmClass.kotlin, { viewModelStore }).value
-        return binding!!.root
+        _binding = inflate.invoke(inflater, container, false)
+        viewModel = ViewModelProvider(this)[vmClass]
+        return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
     abstract fun getToolbarTitle(): String
 
