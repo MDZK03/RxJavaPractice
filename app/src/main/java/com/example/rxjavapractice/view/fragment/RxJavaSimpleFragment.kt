@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.rxjavapractice.base.BaseFragment
 import com.example.rxjavapractice.base.UiState
-import com.example.rxjavapractice.base.example1Description
+import com.example.rxjavapractice.data.example1Description
 import com.example.rxjavapractice.databinding.FragmentRxJavaSimpleBinding
 import com.example.rxjavapractice.viewmodel.RxJavaSimpleViewModel
 
@@ -14,11 +14,10 @@ class RxJavaSimpleFragment : BaseFragment<FragmentRxJavaSimpleBinding>(
     FragmentRxJavaSimpleBinding::inflate
 ) {
     override fun getToolbarTitle(): String = example1Description
-    private lateinit var viewModel: RxJavaSimpleViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[RxJavaSimpleViewModel::class.java]
+        val viewModel = ViewModelProvider(requireActivity())[RxJavaSimpleViewModel::class.java]
         viewModel.uiState().observe(requireActivity()) { uiState -> if(uiState != null) render(uiState) }
         binding.btnServer.setOnClickListener { viewModel.runSimpleRxExample() }
     }

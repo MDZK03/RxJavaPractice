@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.rxjavapractice.base.BaseFragment
 import com.example.rxjavapractice.base.UiState
-import com.example.rxjavapractice.base.example4Description
+import com.example.rxjavapractice.data.example4Description
 import com.example.rxjavapractice.databinding.FragmentCallableExampleBinding
 import com.example.rxjavapractice.viewmodel.CallableExampleViewModel
 
@@ -25,10 +25,10 @@ class CallableExampleFragment : BaseFragment<FragmentCallableExampleBinding>(
         progressBarClb.visibility = View.VISIBLE
         btnLongOperation.isEnabled = false
         tvMessageArea.append("\n" +"Progressbar visible" + "\n")
+        Toast.makeText(requireActivity(), "Please wait a few seconds", Toast.LENGTH_SHORT).show()
     }
 
     override fun onSuccess(uiState: UiState.Success) = with(binding) {
-        Toast.makeText(requireActivity(), "Please wait a few seconds", Toast.LENGTH_SHORT).show()
         progressBarClb.visibility = View.GONE
         btnLongOperation.isEnabled = true
         tvMessageArea.append("\n" + "onNext: " + uiState.successMessage + "\n")

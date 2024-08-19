@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.rxjavapractice.base.BaseFragment
 import com.example.rxjavapractice.base.UiState
-import com.example.rxjavapractice.base.example5Description
+import com.example.rxjavapractice.data.example5Description
 import com.example.rxjavapractice.databinding.FragmentFlowableExampleBinding
 import com.example.rxjavapractice.viewmodel.FlowableExampleViewModel
 

@@ -3,7 +3,6 @@ package com.example.rxjavapractice.view.activity
 import android.os.Bundle
 import androidx.fragment.app.commit
 import com.example.rxjavapractice.base.BaseActivity
-import com.example.rxjavapractice.base.Example
 import com.example.rxjavapractice.databinding.ActivityMainBinding
 import com.example.rxjavapractice.view.fragment.MainFragment
 import com.example.rxjavapractice.viewmodel.MainViewModel

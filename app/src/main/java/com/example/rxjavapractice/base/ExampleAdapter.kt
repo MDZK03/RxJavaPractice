@@ -3,6 +3,7 @@ package com.example.rxjavapractice.base
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rxjavapractice.data.Example
 import com.example.rxjavapractice.databinding.ExampleItemBinding
 
 class ExampleAdapter (

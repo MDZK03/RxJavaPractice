@@ -1,41 +1,47 @@
 package com.example.rxjavapractice.view.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.example.rxjavapractice.R
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxjavapractice.base.BaseFragment
+import com.example.rxjavapractice.base.ListAdapter
 import com.example.rxjavapractice.base.UiState
-import com.example.rxjavapractice.base.example3Description
+import com.example.rxjavapractice.data.books
+import com.example.rxjavapractice.data.example3Description
 import com.example.rxjavapractice.databinding.FragmentBookBinding
+import com.example.rxjavapractice.viewmodel.BookViewModel
 
 class BookFragment : BaseFragment<FragmentBookBinding>(
     FragmentBookBinding::inflate
 ){
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_book, container, false)
+    private var listAdapter = ListAdapter(books)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val viewModel = ViewModelProvider(requireActivity())[BookViewModel::class.java]
+        viewModel.uiState().observe(requireActivity()) { uiState -> if(uiState != null) render(uiState) }
+        viewModel.loadBookList()
+        binding.bookList.apply {
+            adapter = listAdapter
+            hasFixedSize()
+            layoutManager = LinearLayoutManager(requireActivity())
+        }
     }
 
     override fun getToolbarTitle(): String = example3Description
     override fun onLoad() {
-        TODO("Not yet implemented")
+        Toast.makeText(requireActivity(),"Loading",Toast.LENGTH_SHORT).show()
     }
 
     override fun onSuccess(uiState: UiState.Success) {
-        TODO("Not yet implemented")
+        binding.loader.visibility = View.GONE
+        binding.bookList.visibility = View.VISIBLE
+        Toast.makeText(requireActivity(),uiState.successMessage,Toast.LENGTH_SHORT).show()
     }
 
     override fun onError(uiState: UiState.Error) {
-        TODO("Not yet implemented")
+        Toast.makeText(requireActivity(),uiState.errorMessage,Toast.LENGTH_SHORT).show()
     }
 }

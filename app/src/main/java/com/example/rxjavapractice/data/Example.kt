@@ -1,4 +1,4 @@
-package com.example.rxjavapractice.base
+package com.example.rxjavapractice.data
 
 import android.os.Parcelable
 import androidx.fragment.app.Fragment

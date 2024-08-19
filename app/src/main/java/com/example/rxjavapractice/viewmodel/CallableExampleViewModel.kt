@@ -12,7 +12,7 @@ import java.util.concurrent.Callable
 class CallableExampleViewModel : BaseViewModel<UiState>() {
     private var disposable = CompositeDisposable()
     private var callable = Callable {
-        SystemClock.sleep(2000)
+        SystemClock.sleep(3000)
         "Hello"
     }
 

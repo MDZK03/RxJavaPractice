@@ -6,10 +6,10 @@ import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxjavapractice.R
 import com.example.rxjavapractice.base.BaseFragment
-import com.example.rxjavapractice.base.Example
+import com.example.rxjavapractice.data.Example
 import com.example.rxjavapractice.base.ExampleAdapter
 import com.example.rxjavapractice.base.UiState
-import com.example.rxjavapractice.base.exampleList
+import com.example.rxjavapractice.data.exampleList
 import com.example.rxjavapractice.databinding.FragmentMainBinding
 
 class MainFragment : BaseFragment<FragmentMainBinding>(
